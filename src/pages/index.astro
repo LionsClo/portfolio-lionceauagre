@@ -5,24 +5,20 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="utf-8" />
-    <meta name="description" content="Lionceau Agre - Senior Expert in AI, Climate Tech, and Data Governance. Architect of responsible ML systems for emerging economies." />
-    <meta name="keywords" content="AI governance, climate AI, data governance Africa, ISO 42001, responsible AI, machine learning policy" />
+    <meta name="description" content="Lionceau Agre - Senior Expert in AI, Climate Tech, and Data Governance." />
+    <meta name="keywords" content="AI governance, climate AI, data governance Africa, ISO 42001" />
     <meta name="author" content="Lionceau Agre" />
     
-    <!-- SEO Microdata (JSON-LD) pour Google -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Lionceau Agre",
-      "url": "https://lionceauagre.com",
       "jobTitle": "AI & Climate Governance Expert",
-      "knowsAbout": ["Artificial Intelligence Governance", "Climate AI", "Data Policy in Africa", "ISO 42001", "Machine Learning"],
       "sameAs": [
         "https://www.linkedin.com/in/lionceau-clovis-agre-074a0b1b1/",
         "https://github.com/LionsClo",
-        "https://x.com/AgreLionceau",
-        "https://www.youtube.com/@lionceauclovisagre397"
+        "https://x.com/AgreLionceau"
       ]
     }
     </script>
@@ -30,311 +26,237 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="stylesheet" href="../styles/global.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     
     <title>Lionceau Agre | AI, Climate & Governance Expert</title>
 
+    <!-- SCRIPT POUR ANIMATIONS AU SCROLL ET MENU MOBILE -->
     <script is:inline>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scroll
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                    // Fermer le menu mobile si ouvert
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                });
             });
+
+            // Menu Mobile
+            document.getElementById('menu-btn').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+
+            // Animations au scroll (Fade In)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         });
     </script>
+    
+    <style is:inline>
+        /* Animations d'apparition */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .animate-fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
 
-<body class="bg-gray-950 text-gray-300 font-sans antialiased">
+<body class="bg-gray-950 text-gray-300 font-sans antialiased overflow-x-hidden">
 
     <!-- NAVIGATION -->
-    <nav class="fixed top-0 w-full bg-gray-950/80 backdrop-blur-md z-50 border-b border-gray-800">
+    <nav class="fixed top-0 w-full bg-gray-950/90 backdrop-blur-md z-50 border-b border-gray-800">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold text-white tracking-tight">Lionceauagre<span class="text-cyan-400">.ai</span></a>
+            
+            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-6 text-sm">
                 <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
                 <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
-                <a href="#media" class="hover:text-cyan-400 transition-colors">Publications</a>
-                <a href="#teaching" class="hover:text-cyan-400 transition-colors">Teaching</a>
-                <a href="#resources" class="hover:text-cyan-400 transition-colors">Resources</a>
+                <a href="#media" class="hover:text-cyan-400 transition-colors">Media</a>
                 <a href="#contact" class="bg-cyan-500 text-gray-950 px-4 py-2 rounded-lg font-semibold hover:bg-cyan-400 transition-colors">Hire Me</a>
             </div>
+
+            <!-- Mobile Hamburger -->
+            <button id="menu-btn" class="md:hidden text-white text-2xl focus:outline-none">☰</button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-900 border-t border-gray-800 px-6 py-4 space-y-4">
+            <a href="#about" class="block text-gray-300 hover:text-cyan-400">About</a>
+            <a href="#projects" class="block text-gray-300 hover:text-cyan-400">Projects</a>
+            <a href="#media" class="block text-gray-300 hover:text-cyan-400">Media</a>
+            <a href="#contact" class="block bg-cyan-500 text-gray-950 px-4 py-2 rounded-lg font-semibold text-center">Hire Me</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
     <header class="pt-32 pb-20 px-6">
         <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div>
+            <div class="reveal">
                 <p class="text-cyan-400 font-mono text-sm mb-4 tracking-widest uppercase">AI Governance • Climate Tech • Data Sovereignty</p>
                 <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-6">
                     Architecting <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Responsible AI</span> for emerging economies.
                 </h1>
                 <p class="text-lg text-gray-400 mb-8 max-w-lg">
-                    I bridge the gap between advanced machine learning, climate action, and public policy. Building production-ready systems with measurable continental impact.
+                    I bridge the gap between advanced machine learning, climate action, and public policy.
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="#projects" class="bg-cyan-500 text-gray-950 px-6 py-3 rounded-lg font-bold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20">View Live Production Demos</a>
-                    <a href="/cv-lionceauagre.pdf" class="border border-gray-700 text-white px-6 py-3 rounded-lg font-bold hover:border-gray-500 transition-all">Download One-Pager CV</a>
+                    <a href="#projects" class="bg-cyan-500 text-gray-950 px-6 py-3 rounded-lg font-bold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20 hover:scale-105 transform">View Live Demos</a>
+                    <a href="/cv-lionceauagre.pdf" class="border border-gray-700 text-white px-6 py-3 rounded-lg font-bold hover:border-cyan-500 hover:text-cyan-400 transition-all">Download CV</a>
                 </div>
             </div>
-            <div class="hidden md:flex justify-center">
-                <!-- TA PHOTO EST MAINTENANT INTÉGRÉE ICI -->
-                <img src="/profile.jpeg" alt="Lionceau Agre" class="w-80 h-80 object-cover rounded-2xl border border-gray-700 shadow-2xl shadow-cyan-500/10">
+            <div class="hidden md:flex justify-center reveal">
+                <img src="/profile.jpeg" alt="Lionceau Agre" class="w-80 h-80 object-cover rounded-2xl border border-gray-700 shadow-2xl shadow-cyan-500/10 hover:shadow-cyan-500/30 transition-all duration-500">
             </div>
         </div>
     </header>
 
     <!-- SOCIAL PROOF -->
-    <section class="border-y border-gray-800 py-8 bg-gray-900/50">
+    <section class="border-y border-gray-800 py-8 bg-gray-900/50 reveal">
         <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center items-center gap-8 text-gray-500 font-semibold text-sm tracking-wider">
-            <span>TRUSTED BY / PARTNERED WITH :</span>
+            <span>TRUSTED BY :</span>
             <span class="text-2xl font-bold text-gray-400">UNICEF</span>
             <span class="text-2xl font-bold text-gray-400">CAIDP</span>
             <span class="text-2xl font-bold text-gray-400">FRIARE</span>
-            <span class="text-2xl font-bold text-gray-400">ISO 42001</span>
         </div>
     </section>
 
     <!-- ABOUT & STATS -->
     <section id="about" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 reveal">
             <div class="md:col-span-2">
                 <h2 class="text-3xl font-bold text-white mb-6">About Me</h2>
                 <p class="text-gray-400 leading-relaxed mb-4">
-                    I am a Senior Machine Learning Engineer and AI Governance Specialist. My work focuses on designing AI architectures (NLP, Time Series, Deep Learning) applied to energy transition and climate adaptation, strictly aligned with ethical and legal frameworks (ISO 42001, CIPP/E).
+                    Senior ML Engineer & AI Governance Specialist. Designing AI architectures for energy transition, strictly aligned with ISO 42001 & CIPP/E frameworks.
                 </p>
                 <p class="text-gray-400 leading-relaxed">
-                    I advise governments and international organizations on data sovereignty and algorithmic auditing. My approach is "frugal": designing industrial-grade, low-cost ML solutions tailored for low-resource contexts.
+                    Advising governments on data sovereignty. My approach is "frugal": industrial-grade ML tailored for low-resource contexts.
                 </p>
             </div>
             <div class="grid grid-cols-2 gap-4 content-start">
-                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-cyan-500/50 transition-colors">
                     <p class="text-3xl font-extrabold text-cyan-400">40+</p>
                     <p class="text-sm text-gray-500">Production Repos</p>
                 </div>
-                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
+                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800 hover:border-cyan-500/50 transition-colors">
                     <p class="text-3xl font-extrabold text-cyan-400">10+</p>
-                    <p class="text-sm text-gray-500">Expert Certifications</p>
-                </div>
-                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
-                    <p class="text-3xl font-extrabold text-cyan-400">15+</p>
-                    <p class="text-sm text-gray-500">Keynotes & Panels</p>
-                </div>
-                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
-                    <p class="text-3xl font-extrabold text-cyan-400">Continental</p>
-                    <p class="text-sm text-gray-500">Scale Impact</p>
+                    <p class="text-sm text-gray-500">Certifications</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- RESEARCH & PROJECTS -->
+    <!-- PROJECTS -->
     <section id="projects" class="py-20 px-6 bg-gray-900/30">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-white mb-2">Research & Projects</h2>
-            <p class="text-gray-500 mb-8">Open-source, deployed on cloud infrastructure, with attached policy briefs.</p>
+            <div class="mb-10 reveal">
+                <h2 class="text-3xl font-bold text-white mb-2">Research & Projects</h2>
+                <p class="text-gray-500">Open-source, deployed, with attached policy briefs.</p>
+            </div>
             
-            <!-- FILTER BUTTONS -->
-            <div class="flex flex-wrap gap-3 mb-10">
-                <button class="filter-btn text-sm px-4 py-2 rounded-lg border border-gray-700 text-gray-400 hover:border-cyan-500 hover:text-cyan-400 transition-all" data-filter="all">All Projects</button>
+            <div class="flex flex-wrap gap-3 mb-10 reveal">
+                <button class="filter-btn text-sm px-4 py-2 rounded-lg border border-cyan-500 text-cyan-400" data-filter="all">All</button>
                 <button class="filter-btn text-sm px-4 py-2 rounded-lg border border-gray-700 text-gray-400 hover:border-cyan-500 hover:text-cyan-400 transition-all" data-filter="climate">Climate AI</button>
-                <button class="filter-btn text-sm px-4 py-2 rounded-lg border border-gray-700 text-gray-400 hover:border-cyan-500 hover:text-cyan-400 transition-all" data-filter="governance">AI Governance</button>
-                <button class="filter-btn text-sm px-4 py-2 rounded-lg border border-gray-700 text-gray-400 hover:border-cyan-500 hover:text-cyan-400 transition-all" data-filter="tools">Tools & Infra</button>
+                <button class="filter-btn text-sm px-4 py-2 rounded-lg border border-gray-700 text-gray-400 hover:border-cyan-500 hover:text-cyan-400 transition-all" data-filter="governance">Governance</button>
             </div>
             
             <div id="project-grid" class="grid md:grid-cols-2 gap-8">
-                <!-- Projet 1 -->
-                <div class="project-card bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-cyan-500/50 transition-all group" data-category="climate">
+                <!-- Carte Projet -->
+                <div class="project-card bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/10 group" data-category="climate">
                     <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-cyan-500/10 text-cyan-400 text-xs font-mono px-3 py-1 rounded-full border border-cyan-500/20">Continental Impact</span>
-                            <a href="https://github.com/LionsClo" target="_blank" class="text-gray-500 hover:text-white transition-colors">GitHub ↗</a>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">PowerForecast Africa</h3>
-                        <p class="text-gray-400 text-sm mb-4">Urban energy demand forecasting at continental scale using LSTM and satellite data. Deployed on GCP.</p>
-                        <div class="flex space-x-2 mb-4">
-                            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">PyTorch</span>
-                            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">GCP</span>
-                            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Docker</span>
-                        </div>
+                        <span class="bg-cyan-500/10 text-cyan-400 text-xs font-mono px-3 py-1 rounded-full border border-cyan-500/20">Continental Impact</span>
+                        <h3 class="text-xl font-bold text-white mt-4 mb-2">PowerForecast Africa</h3>
+                        <p class="text-gray-400 text-sm mb-4">Energy demand forecasting using LSTM and satellite data.</p>
                         <div class="flex space-x-4">
-                            <a href="#" class="inline-flex items-center text-sm font-bold text-cyan-400 group-hover:underline">Live Demo →</a>
-                            <a href="#" class="inline-flex items-center text-sm font-bold text-purple-400 group-hover:underline">Policy Brief →</a>
+                            <a href="#" class="text-sm font-bold text-cyan-400 group-hover:underline">Live Demo →</a>
+                            <a href="https://github.com/LionsClo" target="_blank" class="text-sm font-bold text-gray-500 group-hover:text-white group-hover:underline">GitHub ↗</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Projet 2 -->
-                <div class="project-card bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-cyan-500/50 transition-all group" data-category="governance">
+                <div class="project-card bg-gray-900 rounded-2xl border border-gray-800 overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/10 group" data-category="governance">
                     <div class="p-6">
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-purple-500/10 text-purple-400 text-xs font-mono px-3 py-1 rounded-full border border-purple-500/20">AI Governance</span>
-                            <a href="https://github.com/LionsClo" target="_blank" class="text-gray-500 hover:text-white transition-colors">GitHub ↗</a>
-                        </div>
-                        <h3 class="text-xl font-bold text-white mb-2">GovAI Audit Framework</h3>
-                        <p class="text-gray-400 text-sm mb-4">Open-source framework to audit public AI models for ISO 42001 compliance and fairness metrics.</p>
-                        <div class="flex space-x-2 mb-4">
-                            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Python</span>
-                            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">Fairlearn</span>
-                            <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">CI/CD</span>
-                        </div>
+                        <span class="bg-purple-500/10 text-purple-400 text-xs font-mono px-3 py-1 rounded-full border border-purple-500/20">AI Governance</span>
+                        <h3 class="text-xl font-bold text-white mt-4 mb-2">GovAI Audit Framework</h3>
+                        <p class="text-gray-400 text-sm mb-4">Audit public AI models for ISO 42001 compliance.</p>
                         <div class="flex space-x-4">
-                            <a href="#" class="inline-flex items-center text-sm font-bold text-cyan-400 group-hover:underline">Live Demo →</a>
-                            <a href="#" class="inline-flex items-center text-sm font-bold text-purple-400 group-hover:underline">Read Paper →</a>
+                            <a href="#" class="text-sm font-bold text-purple-400 group-hover:underline">Policy Brief →</a>
+                            <a href="https://github.com/LionsClo" target="_blank" class="text-sm font-bold text-gray-500 group-hover:text-white group-hover:underline">GitHub ↗</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mt-8 text-center">
-                <a href="https://github.com/LionsClo" target="_blank" class="text-gray-500 hover:text-cyan-400 transition-colors text-sm font-semibold">View all repositories on GitHub →</a>
-            </div>
         </div>
     </section>
 
-    <!-- PUBLICATIONS & MEDIA -->
-    <section id="media" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-white mb-12">Publications & Media</h2>
-            <div class="grid md:grid-cols-2 gap-16">
-                <div>
-                    <h3 class="text-xl font-semibold text-white mb-6 flex items-center">📄 Scientific Papers & Reports</h3>
-                    <ul class="space-y-6">
-                        <li class="border-l-2 border-cyan-500 pl-4">
-                            <p class="text-white font-semibold">Data Governance for Climate AI in Sub-Saharan Africa</p>
-                            <p class="text-sm text-gray-500">Journal of AI Ethics, 2023</p>
-                            <a href="#" class="text-xs text-cyan-400 hover:underline mt-1 inline-block">Download PDF</a>
-                        </li>
-                        <li class="border-l-2 border-gray-700 pl-4">
-                            <p class="text-white font-semibold">Auditing Generative AI: A Low-Resource Government Playbook</p>
-                            <p class="text-sm text-gray-500">Tech Report - arXiv, 2024</p>
-                            <a href="#" class="text-xs text-cyan-400 hover:underline mt-1 inline-block">Download PDF</a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold text-white mb-6 flex items-center">🎤 Conferences, Podcasts & Webinars</h3>
-                    <ul class="space-y-6">
-                        <li class="border-l-2 border-purple-500 pl-4">
-                            <p class="text-white font-semibold">Keynote: Sovereign AI for Climate Resilience</p>
-                            <p class="text-sm text-gray-500">Africa Climate Summit, Nairobi</p>
-                            <a href="https://www.youtube.com/@lionceauclovisagre397" target="_blank" class="text-xs text-purple-400 hover:underline mt-1 inline-block">Watch on YouTube</a>
-                        </li>
-                        <li class="border-l-2 border-gray-700 pl-4">
-                            <p class="text-white font-semibold">Panelist: Navigating ISO 42001 Implementation</p>
-                            <p class="text-sm text-gray-500">CAIDP Annual Webinar, 2024</p>
-                            <a href="#" class="text-xs text-purple-400 hover:underline mt-1 inline-block">Read Transcript</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TEACHING & MENTORSHIP -->
-    <section id="teaching" class="py-20 px-6 bg-gray-900/30">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-white mb-6">Teaching & Mentorship</h2>
-            <p class="text-gray-400 mb-12 max-w-3xl">Committed to building the next generation of African AI practitioners through frugal pedagogy and open-access curriculum design.</p>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
-                    <h4 class="text-lg font-bold text-white mb-2">Frugal AI Curriculum</h4>
-                    <p class="text-sm text-gray-400 mb-3">A comprehensive syllabus teaching Deep Learning using low-compute infrastructure.</p>
-                    <a href="#" class="text-sm text-cyan-400 hover:underline">View Curriculum →</a>
-                </div>
-                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
-                    <h4 class="text-lg font-bold text-white mb-2">Rural FabLab Initiative</h4>
-                    <p class="text-sm text-gray-400 mb-3">Case study on deploying AI literacy programs in disconnected rural areas.</p>
-                    <a href="#" class="text-sm text-cyan-400 hover:underline">Read Case Study →</a>
-                </div>
-                <div class="bg-gray-900 p-6 rounded-xl border border-gray-800">
-                    <h4 class="text-lg font-bold text-white mb-2">1-on-1 Mentorship</h4>
-                    <p class="text-sm text-gray-400 mb-3">Guiding junior engineers annually into their first ML roles or fellowships.</p>
-                    <a href="#contact" class="text-sm text-cyan-400 hover:underline">Apply for Mentorship →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RESOURCES -->
-    <section id="resources" class="py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-bold text-white mb-6">Open Resources</h2>
-            <p class="text-gray-400 mb-12 max-w-3xl">Datasets, shared libraries, and tools maintained for the community.</p>
-            <div class="bg-gray-900 rounded-2xl border border-gray-800 p-8 grid md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="text-xl font-bold text-white mb-4">📦 Datasets (Zenodo / HuggingFace)</h4>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li class="flex items-center"><span class="text-cyan-400 mr-2">→</span> West Africa Energy Consumption (2015-2024)</li>
-                        <li class="flex items-center"><span class="text-cyan-400 mr-2">→</span> Malaria Incidence & Climate Variables</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xl font-bold text-white mb-4">🛠️ Shared Libraries (PyPI)</h4>
-                    <ul class="space-y-3 text-gray-400 text-sm">
-                        <li class="flex items-center"><span class="text-purple-400 mr-2">→</span> <code class="bg-gray-800 px-1 rounded">govai-auditor</code> (Bias & Fairness checker)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TESTIMONIAL / QUOTE -->
-    <section class="py-20 px-6 bg-gray-900/30 border-y border-gray-800">
-        <div class="max-w-4xl mx-auto text-center">
-            <svg class="w-10 h-10 text-cyan-500/50 mx-auto mb-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-            <p class="text-xl md:text-2xl text-gray-300 italic mb-8 leading-relaxed">
-                "Lionceau brings a rare combination of deep technical expertise in ML and a sharp understanding of African policy landscapes."
-            </p>
-            <p class="text-cyan-400 font-semibold">— [Name of Fellow / Director]</p>
-            <p class="text-sm text-gray-500">Fellowship Director, [Organization]</p>
-        </div>
-    </section>
-
-    <!-- CONTACT & HIRE ME -->
+    <!-- CONTACT & FORMULAIRE PRO -->
     <section id="contact" class="py-20 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-bold text-white mb-6">Let's shape the future of AI together.</h2>
-            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">
-                Currently accepting select opportunities for Senior AI roles, International Fellowships, Advisory Boards, and Keynote Speaking.
-            </p>
+        <div class="max-w-4xl mx-auto reveal">
+            <h2 class="text-4xl font-bold text-white mb-4 text-center">Let's shape the future of AI.</h2>
+            <p class="text-gray-400 mb-12 text-center">For Senior AI roles, Fellowships, or Keynotes.</p>
             
-            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-8">
-                <a href="mailto:lionceauagre@gmail.com" class="bg-cyan-500 text-gray-950 px-8 py-4 rounded-lg font-bold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20">
-                    Send a Direct Email
-                </a>
-                <a href="tel:+2290167710702" class="border border-gray-700 text-white px-8 py-4 rounded-lg font-bold hover:border-gray-500 transition-all">
-                    Call Me: +229 01 67 71 07 02
-                </a>
-            </div>
-            
-            <p class="text-gray-500 text-sm mb-10">Also available on WhatsApp at +229 01 66 51 89 84</p>
-
-            <!-- Réseaux Sociaux -->
-            <div class="flex justify-center items-center flex-wrap gap-6 text-gray-500">
-                <a href="https://www.linkedin.com/in/lionceau-clovis-agre-074a0b1b1/" target="_blank" class="hover:text-cyan-400 transition-colors text-2xl font-bold" title="LinkedIn">in</a>
-                <a href="https://github.com/LionsClo" target="_blank" class="hover:text-cyan-400 transition-colors text-2xl font-bold" title="GitHub">gh</a>
-                <a href="https://x.com/AgreLionceau" target="_blank" class="hover:text-cyan-400 transition-colors text-2xl font-bold" title="X (Twitter)">X</a>
-                <a href="https://www.youtube.com/@lionceauclovisagre397" target="_blank" class="hover:text-cyan-400 transition-colors text-2xl font-bold" title="YouTube">▶</a>
+            <div class="bg-gray-900 rounded-2xl border border-gray-800 p-8 md:p-12 shadow-xl">
+                <form action="https://formspree.io/f/xyz" method="POST" class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="text-sm text-gray-400 block mb-2">Your Name</label>
+                        <input type="text" name="name" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-cyan-500 focus:outline-none transition-colors" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label class="text-sm text-gray-400 block mb-2">Your Email</label>
+                        <input type="email" name="email" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-cyan-500 focus:outline-none transition-colors" placeholder="john@company.com">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="text-sm text-gray-400 block mb-2">Subject (e.g., Fellowship Application, Keynote Invite)</label>
+                        <input type="text" name="subject" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-cyan-500 focus:outline-none transition-colors" placeholder="Speaking at AI Summit 2024">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="text-sm text-gray-400 block mb-2">Message</label>
+                        <textarea name="message" rows="5" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-cyan-500 focus:outline-none transition-colors resize-none" placeholder="Tell me about the opportunity..."></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <button type="submit" class="w-full bg-cyan-500 text-gray-950 py-4 rounded-lg font-bold hover:bg-cyan-400 transition-all shadow-lg shadow-cyan-500/20 hover:scale-[1.02] transform">
+                            Send Professional Inquiry
+                        </button>
+                    </div>
+                </form>
                 
-                <!-- Réseaux secondaires (plus discrets) -->
-                <span class="text-gray-700">|</span>
-                <a href="https://www.goodwall.io/lionceau-clovis-agre-51f3" target="_blank" class="hover:text-gray-300 transition-colors text-sm font-semibold" title="Goodwall">Goodwall</a>
-                <a href="https://www.facebook.com/lionceau.agre.9" target="_blank" class="hover:text-gray-300 transition-colors text-sm font-semibold" title="Facebook">Facebook</a>
+                <div class="mt-8 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+                    <p>Prefer direct contact? <a href="mailto:lionceauagre@gmail.com" class="text-cyan-400 hover:underline">lionceauagre@gmail.com</a></p>
+                    <p>WhatsApp: <a href="https://wa.me/2290166518984" class="text-cyan-400 hover:underline">+229 01 66 51 89 84</a></p>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex justify-center gap-6 mt-12 text-gray-500">
+                <a href="https://www.linkedin.com/in/lionceau-clovis-agre-074a0b1b1/" target="_blank" class="hover:text-cyan-400 transition-colors text-2xl">in</a>
+                <a href="https://github.com/LionsClo" target="_blank" class="hover:text-cyan-400 transition-colors text-2xl">gh</a>
+                <a href="https://x.com/AgreLionceau" target="_blank" class="hover:text-cyan-400 transition-colors text-2xl">X</a>
+                <a href="https://www.youtube.com/@lionceauclovisagre397" target="_blank" class="hover:text-cyan-400 transition-colors text-2xl">▶</a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer class="border-t border-gray-800 py-8 px-6 text-center text-sm text-gray-600">
-        <p>© 2024 Lionceau Agre. Engineered with rigor & Astro.</p>
-        <p class="mt-2">
-            <a href="/press-kit.pdf" class="hover:text-gray-400 transition-colors">Press Kit</a> • 
-            <a href="#" class="hover:text-gray-400 transition-colors">Privacy Policy</a>
-        </p>
+        <p>© 2024 Lionceau Agre. Engineered with rigor.</p>
     </footer>
 
-    <!-- SCRIPT POUR LE FILTRE DES PROJETS -->
+    <!-- SCRIPT FILTRE PROJETS -->
     <script is:inline>
         const buttons = document.querySelectorAll('.filter-btn');
         const cards = document.querySelectorAll('.project-card');
@@ -353,8 +275,7 @@
                 cards.forEach(card => {
                     if (filter === 'all' || card.dataset.category === filter) {
                         card.style.display = 'block';
-                        card.style.opacity = '0';
-                        setTimeout(() => card.style.opacity = '1', 50);
+                        setTimeout(() => card.style.opacity = '1', 10);
                     } else {
                         card.style.display = 'none';
                     }
